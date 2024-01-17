@@ -12,15 +12,15 @@ input.addEventListener("keyup", (e) => {
 			suggestion.classList.add('suggestions');
 			suggestion.setAttribute('onclick',
 			"selectSuggestion('"+fruit+"')");
-			suggestion.innerHTML = boldString(fruit, fruit.substring(0, input.value.length));
+			let startIndex = fruit.toLowerCase().indexOf(input.value.toLowerCase());
+			suggestion.innerHTML = boldString(fruit, fruit.substring(startIndex, startIndex + input.value.length));
 			list.appendChild(suggestion);
 		}
 	}
 });
 
 function boldString(str, substr) {
-	let strRegExp = new RegExp(substr, 'g');
-	return str.replace(strRegExp, '<b>'+substr+'</b>');
+	return str.replace(substr, '<b>'+substr+'</b>');
 }
 
 function selectSuggestion(value) {
